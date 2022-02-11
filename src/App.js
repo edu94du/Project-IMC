@@ -5,34 +5,36 @@ export default function App() {
 
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
-
-  const [mensagem,setMensagem] = useState('');
+  const [mensagem, setMensagem] = useState('');
 
   function imc() {
+
     const alt = altura / 100;
     const imc = peso / (alt * alt);
+    const base = 18.6
 
-    if (imc < 18.6) {
-      setMensagem('voce esta abaixo do peso 😱 ' + imc.toFixed(2))
+    if (imc < base) {
+
+      setMensagem('You are underweight 😱 ' + imc.toFixed(2))
     } else if (imc >= 18.6 && imc < 24.9) {
-      setMensagem('voce esta no peso ideal 😎 ' + imc.toFixed(2))
+      setMensagem('You are at the ideal weight 😎 ' + imc.toFixed(2))
     } else if (imc >= 24.9 && imc < 34.9) {
-      setMensagem('voce esta um pouco acima do peso ideal 😕 ' + imc.toFixed(2))
+      setMensagem('You are a little overweight 😕 ' + imc.toFixed(2))
     } else if (imc > 34.9) {
-      setMensagem('Cuidado Obesidade 😱 ' + imc.toFixed(2))
+      setMensagem('Obesity care 😱 ' + imc.toFixed(2))
     }
   }
 
   return (
     <div className="app">
-      <h1>Calculadora IMC</h1>
-      <span>Vamos calcular o seu imc</span>
+      <h1>IMC Calculator</h1>
+      <span>Lets calc your imc</span>
 
       <div className="area-input">
-        <input type="text" placeholder="Digite seu peso aqui" value={peso} onChange={(e) => setPeso(e.target.value)}></input>
-        <input type="text" placeholder="Digite sua altura" value={altura} onChange={(e) => setAltura(e.target.value)}></input>
+        <input type="text" placeholder="Insert your weight here" value={peso} onChange={(e) => setPeso(e.target.value)}></input>
+        <input type="text" placeholder="Insert your height here" value={altura} onChange={(e) => setAltura(e.target.value)}></input>
         <button onClick={imc}>
-          calcular
+          Calculate
         </button>
         <h2>{mensagem}</h2>
       </div>
